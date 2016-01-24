@@ -60,135 +60,51 @@
 
 				<section>
                     <section>
-                        <img class="full-size-image" src="images/aologo.png" style="width: 400px; margin: auto; border: none" />
-                        <h2>A Beginner's guide to <span class="ao-highlight-blue">JavaScript</span></h2>
-                        <div class="fragment">
-                            <small>With some obligatory <span class="ao-highlight-blue">HTML</span> &amp; <span class="ao-highlight-blue">CSS</span> thrown in for good measure</small>
-
-                        </div>
+                        <h2 style="text-transform: none">A quick run through of <span class="ao-highlight-blue">WebPack</span></h2>
+                        <img class="full-size-image" src="images/webpack-logo.jpg" style="width: 250px; margin: auto; border: none" />
                     </section>
 				</section>
 
                 <section>
                     <section>
-                        <h2>Welcome to Programming <span class="ao-highlight-blue">JavaScript</span></h2>
-                        <p class="fragment"><span class="ao-highlight-blue">Where</span> to begin?!</p>
-                        <p class="fragment">First, understand exactly what it is that you're <span class="ao-highlight-blue">learning</span> to do</p>
-                        <p class="fragment">You're ultimately giving a <span class="ao-highlight-blue">computer</span> instructions</p>
-                        <p class="fragment">Treat computers like little <span class="ao-highlight-blue">children</span>. If you don't tell them <span class="ao-highlight-blue">exactly</span> what to do, chaos ensues</p>
+                        <h2>What is <span class="ao-highlight-blue">Webpack?</span></h2>
+                        <p class="fragment">It's a JavaScript <span class="ao-highlight-blue">module</span> bundler</p>
+                        <p class="fragment">But can be expanded to bundle <span class="ao-highlight-blue">any</span> type of file</p>
+                        <p class="fragment">Think of <span class="ao-highlight-blue">Gulp</span></p>
+                        <p class="fragment">but Gulp works on a <span class="ao-highlight-blue">file</span> level</p>
+                        <p class="fragment">Whilst Webpack works on a <span class="ao-highlight-blue">project</span> level</p>
                     </section>
                     <section>
-                        <h2><span class="ao-highlight-blue">Terminology</span></h2>
-                        <p class="fragment">You write your <span class="ao-highlight-blue">instructions</span> in a text file</p>
-                        <p class="fragment">This is known as your <span class="ao-highlight-blue">source code</span></p>
-                        <p class="fragment"><span class="ao-highlight-blue">"Source code"</span> is just the first of many new terms you're likely to hear</p>
-                        <p class="fragment">Some of it can sound <span class="ao-highlight-blue">intimidating</span> - but <span class="ao-highlight-blue">don't</span> be afraid</p>
-                        <p class="fragment">Like learning a new <span class="ao-highlight-blue">spoken</span> language it's tricky to begin with but soon things start to <span class="ao-highlight-blue">click</span></p>
+                        <img src="images/interested.gif" alt="" class="full-size-image">
+                        <h4>Tell you <span class="ao-highlight-blue">more</span>?</h4>
+                        <p class="fragment">Ok then...</p>
                     </section>
                     <section>
-                        <h2>There'll likely be times you feel like this</h2>
-                        <img class="full-size-image" src="images/smash-pc.gif" />
+                        <h2>So what can Webpack <span class="ao-highlight-blue">do</span> exactly?</h2>
+                        <p class="fragment">Compile and bundle your <span class="ao-highlight-blue">assets</span></p>
+                        <div class="fragment">
+                            <img src="images/shrug.gif" style="width:500px; margin: auto" alt="" class="full-size-image">
+                            <p class="fragment">So <span class="ao-highlight-blue">what</span>? I hear you cry</p>
+                        </div>
+                    </section>
+                    <section>
+                        <h2>Writing modern <span class="ao-highlight-blue">JavaScript</span> apps</h2>
+                        <p class="fragment">Whether you're working in the <span class="ao-highlight-blue">browser</span> or with <span class="ao-highlight-blue">NodeJs</span></p>
+                        <p class="fragment">you should be working with <span class="ao-highlight-blue">modules</span></p>
+                        <pre class="fragment"><code class="hljs" data-trim contenteditable>
+// ES6 import
+import React from "react";
+
+// Node / CommonJS
+var React = require("react");
+
+                        </code></pre>
                     </section>
                 </section>
 
 			</div>
 
 		</div>
-
-        /*
-        Programming JavaScript -
-
-        Writing in a text file - your source code - to give a computer instructions on what to do.
-        The computer can't directly understand your code - it needs to get compiled down into language the
-        computer does understand,
-        ultimately machine code, binary, 1s and 0s.
-        The source code is not for the computer's benefit - it is for yours.
-        It's meant to be readable to humans.
-
-        JavaScript is the only programming language that's native to the web browser.
-        That means EVERY web browser supports JavaScript and has since the very early days of the internet,
-        from the time since the days of the Netscape 2 and Internet Explorer 3 browsers.
-
-        The browser supports other programming languages,
-        but they have to be installed as plugins - Flash, Java, Sliverlight etc.
-        They do not run natively in the browser and are all but phased out now anyway.
-        So JavaScript has the monopoly. There is no competition from other programming languages.
-
-        So if you want your website to do anything beyond display web pages, you need to instruct it to do so in JavaScript.
-
-        Learning a programming language requires a new way of thinking.
-        It requires getting into the mindset of the language context.
-
-        JavaScript runs in other contexts than the browser.
-        It runs on servers, in robots, in appliances and many other things.
-        But most relevantly here, it runs in the browser.
-        So writing instructions for the browser requires thinking in the context of the browser.
-        And the context is ultimately websites, the internet, the browser itself and the device it runs on.
-
-        The context of the browser means thinking about all the things the browser both has access to and can do,
-        think about the ability to access and manipulate every part of a web page - every word, image, link and so on,
-        think about the ability to use the internet and send and receive information to and from other websites and services,
-        think about accessing browser related information such as your browser history, cookies or the address bar.
-        JavaScript has the ability to do all these things.
-
-        Web browsers also provide a ton of additional services that can create -
-        audio, video, animations, 3d models, access battery life, bluetooth, geolocation of users etc...
-        plus much, much more.
-        JavaScript can access and utilise all these things too,
-        so your mindset should be writing software to take advantage of all these services and this information.
-
-        This may be something like writing a program to do something as simple as responding to when a user clicks something,
-        such as when you like a post on Facebook or Twitter,
-        or something as complex as allowing a user to make a purchase online,
-        or something as common as giving access to multimedia such as video or music,
-        or something as useful as providing a service such as travel information or geographical information.
-
-        It is making use of all the wonderful things possible in the browser and the internet.
-
-        When JavaScript is included in a context, such as the browser or the server,
-        they are known as its host environment.
-        The host environment provides hooks for JavaScript to tap into it and access its information and utilise its services.
-        These hooks are collectively known as an API - Application Programming Interface.
-
-        Think of Facebook.
-        Think how websites can display how many likes their Facebook page has.
-        Think how websites allow you to share their content on Facebook.
-        Think about all the other Facebook related stuff you see aroud the internet,
-        that utilise data or services from Facebook.
-
-        This is because Facebook has numerous APIs.
-        These APIs allow you to tap into their data and use their services.
-        There is a Facebook JavaScript API to allow websites to utilise this data and these services.
-
-        NodeJS which is server side JavaScript is the same thing.
-        It has an API that exposes its data and services to JavaScript.
-        A server's data and services are obviously different to those of a browser.
-        NodeJS's API allows JavaScript to access many server related things,
-        such as its file system, network connections and databases.
-
-        The browser is the same thing.
-        It has an API that exposes its data and services to JavaScript.
-        The browser's API is known as the DOM API - the Document Object Model.
-        Back in the early days browsers were used originally to access documents.
-        Document is interchangeable for web page which is a document made up of HTML.
-
-        HTML is how documents are described to the browser.
-        This is a paragraph. This is an image. This is a video. This is a link etc etc.
-        If something is a link for example, the browser knows to jump to the web page it links to when its clicked.
-        The DOM represents the structure of a web page's HTML,
-        and the API allows JavaScript access to it and all the functionality it supports.
-
-        Learning to write JavaScript is just like learning a new spoken language -
-        at first very little will probably make sense.
-        But JavaScript is, as languages go, one of the most readable.
-        Programming languages, like spoken language, have syntax, grammar and punctuation.
-        These things collectively make statements.
-        Your source code is just a collection of statements that collectively achieve an outcome
-        with lots of quirks and nuances, just like every spoken language.
-
-        Array.from(document.querySelectorAll("link, style")).forEach(item => item.parentNode.removeChild(item));
-
-        */
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
