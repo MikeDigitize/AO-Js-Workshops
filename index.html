@@ -85,11 +85,11 @@
                         <p class="fragment">Compile and bundle your <span class="ao-highlight-blue">assets</span></p>
                         <div class="fragment">
                             <img src="images/shrug.gif" style="width:500px; margin: auto" alt="" class="full-size-image">
-                            <p class="fragment">What <span class="ao-highlight-blue">else</span>?</p>
+                            <p class="fragment">Does that even <span class="ao-highlight-blue">mean</span> anything to you?</p>
                         </div>
                     </section>
                     <section>
-                        <h2>Handles your JavaScript <span class="ao-highlight-blue">modules</span></h2>
+                        <h3>It handles your JavaScript <span class="ao-highlight-blue">modules</span></h3>
                         <p class="fragment">Intelligently</p>
                         <pre class="fragment"><code class="hljs" data-trim contenteditable>
 // ES6 import
@@ -117,6 +117,8 @@ var React = require("react");
                             <li class="fragment">Converting <span class="ao-highlight-blue">JSX</span> to React</li>
                             <li class="fragment">Super fast file watching and <span class="ao-highlight-blue">compiling</span></li>
                         </ul>
+                        <p class="fragment">Through the use of <span class="ao-highlight-blue">loaders</span></p>
+                        <p class="fragment">Which makes it extremely <span class="ao-highlight-blue">modular</span></p>
                     </section>
                     <section>
                         <img src="images/cheers.gif" alt="" class="full-size-image">
@@ -130,7 +132,9 @@ var React = require("react");
                             <li class="fragment"><span class="ao-highlight-blue">Localising</span> CSS</li>
                         </ul>
                         <p class="fragment">Plus: it plays beautifully with React and <span class="ao-highlight-blue">Redux</span> too</p>
-                        <p class="fragment">And can be used from within <span class="ao-highlight-blue">Gulp</span> like any other Gulp plugin</p>
+                        <p class="fragment">And it doesn't have to be used as a <span class="ao-highlight-blue">standalone</span> tool either</p>
+                        <p class="fragment">It can be used in <span class="ao-highlight-blue">Gulp</span> like any other Gulp plugin</p>
+                        <p class="fragment">Or ran from your own custom script in <span class="ao-highlight-blue">Node</span></p>
                     </section>
                     <section>
                         <img src="images/ooh.gif" alt="" class="full-size-image">
@@ -159,25 +163,66 @@ var React = require("react");
                         <p class="fragment">You <span class="ao-highlight-blue">need</span> to have</p>
                         <ul>
                             <li class="fragment"><span class="ao-highlight-blue">NodeJS</span> installed</li>
-                            <li class="fragment">Have a <span class="ao-highlight-blue">package.json</span> file</li>
-                            <li class="fragment">A Webpack <span class="ao-highlight-blue">config</span> file</li>
-                            <li class="fragment">An <span class="ao-highlight-blue">entry</span> point</li>
+                            <li class="fragment">And Webpack installed <span class="ao-highlight-blue">globally</span></li>
+                            <li class="fragment">That's <span class="ao-highlight-blue">it</span>!</li>
                         </ul>
-                        <p class="fragment">You can also install <span class="ao-highlight-blue">webpack-dev-server</span> globally (not required, just a nice to have)</p>
+                        <p class="fragment">You can also install <span class="ao-highlight-blue">webpack-dev-server</span> globally (not required, just a nice to have) which will <span class="ao-highlight-blue">restart</span> your app every time you make a save</p>
                     </section>
                     <section>
-                        <h2>Creating your <span class="ao-highlight-blue">Webpack</span> config</h2>
-                        <p class="fragment">In your root create a file called webpack.config.js</p>
-                        <p class="fragment">It's just an object that uses Node's module.exports syntax</p>
+                        <h2>The <span class="ao-highlight-blue">Webpack</span> config</h2>
+                        <p class="fragment">In your root create a file called <span class="ao-highlight-blue">webpack.config.js</span></p>
+                        <p class="fragment">It's just an object that uses Node's <span class="ao-highlight-blue">module.exports</span> syntax</p>
                         <pre class="fragment"><code class="hljs" data-trim contenteditable>
 module.exports = {
-    entry : "./src/js/app.js",
+    entry : "./src/path/to/your/entry/file",
     output : {
-        filename : "./build/js/app.js"
+        filename : "./build/path/to/your/output"
     },
-    watch : true
+    watch : true // watch for changes
 };
                         </code></pre>
+                    </section>
+                    <section>
+                        <h2>Example <span class="ao-highlight-blue">entry</span> file</h2>
+<pre class="fragment"><code class="hljs" data-trim contenteditable>
+var React = require("react"); // you've installed React locally via npm
+var ReactDOM = require("react-dom");
+var App = require("./src/path/to/components/app");
+
+ReactDOM.render(< App />, document.getElementById("app-holder"));
+
+</code></pre>
+                    </section>
+                    <section>
+                        <h2>From the <span class="ao-highlight-blue">command</span> line</h2>
+                        <p class="fragment">Just <span class="ao-highlight-blue">type</span></p>
+<pre class="fragment"><code class="hljs" data-trim contenteditable>
+webpack
+</code></pre>
+                        <p class="fragment">and hit <span class="ao-highlight-blue">return</span></p>
+                    </section>
+                    <section>
+                        <h2><span class="ao-highlight-blue">Winning</span>!</h2>
+                        <img src="images/winning.gif" alt="" class="full-size-image">
+                    </section>
+                    <section>
+                        <h3>Webpack's <span class="ao-highlight-blue">loaders</span></h3>
+<pre class="fragment"><code class="hljs" data-trim contenteditable>
+module.exports = {
+    // ...stuff omitted
+    module: {
+        loaders: [{
+            test: /\.js$|\.jsx$/,
+            exclude: /node_modules/,
+            loader: 'babel-loader'
+        }]
+    }
+};
+
+</code></pre>
+
+
+
                     </section>
                 </section>
 
