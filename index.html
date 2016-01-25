@@ -76,9 +76,9 @@
                         <p class="fragment">Whilst Webpack works on a <span class="ao-highlight-blue">project</span> level</p>
                     </section>
                     <section>
-                        <h4>Tell you <span class="ao-highlight-blue">more</span>?</h4>
-                        <img src="images/interested.gif" alt="" class="full-size-image fragment">
-                        <p class="fragment">Ok then...</p>
+                        <h4>Tell you <span class="ao-highlight-blue">more</span> you say?</h4>
+                        <img src="images/interested.gif" alt="" class="full-size-image">
+                        <p class="fragment">Sure...</p>
                     </section>
                     <section>
                         <h2>So what can Webpack <span class="ao-highlight-blue">do</span> exactly?</h2>
@@ -101,7 +101,7 @@ var React = require("react");
                         </code></pre>
                         <p class="fragment">Webpack identifies and <span class="ao-highlight-blue">eliminates</span> dead code that's not being used</p>
                         <p class="fragment">It identifies <span class="ao-highlight-blue">common dependencies</span> such as React or jQuery</p>
-                        <p class="fragment">And makes a cacheable <span class="ao-highlight-blue">shared</span> bundle</p>
+                        <p class="fragment">And makes cacheable <span class="ao-highlight-blue">shared</span> bundles to prevent code duplication</p>
                     </section>
                     <section>
                         <img src="images/sort-of-want.jpg" alt="" class="full-size-image">
@@ -128,9 +128,9 @@ var React = require("react");
                             <li class="fragment"><span class="ao-highlight-blue">Optimising</span> image files</li>
                             <li class="fragment">Converting and <span class="ao-highlight-blue">inlining</span> CSS @font-face rules</li>
                             <li class="fragment"><span class="ao-highlight-blue">Localising</span> CSS</li>
-                            <li class="fragment">It plays beautifully with React and <span class="ao-highlight-blue">Redux</span></li>
-                            <li class="fragment">And can be used from within <span class="ao-highlight-blue">Gulp</span> like any other Gulp plugin</li>
                         </ul>
+                        <p class="fragment">Plus: it plays beautifully with React and <span class="ao-highlight-blue">Redux</span> too</p>
+                        <p class="fragment">And can be used from within <span class="ao-highlight-blue">Gulp</span> like any other Gulp plugin</p>
                     </section>
                     <section>
                         <img src="images/ooh.gif" alt="" class="full-size-image">
@@ -164,6 +164,20 @@ var React = require("react");
                             <li class="fragment">An <span class="ao-highlight-blue">entry</span> point</li>
                         </ul>
                         <p class="fragment">You can also install <span class="ao-highlight-blue">webpack-dev-server</span> globally (not required, just a nice to have)</p>
+                    </section>
+                    <section>
+                        <h2>Creating your <span class="ao-highlight-blue">Webpack</span> config</h2>
+                        <p class="fragment">In your root create a file called webpack.config.js</p>
+                        <p class="fragment">It's just an object that uses Node's module.exports syntax</p>
+                        <pre class="fragment"><code class="hljs" data-trim contenteditable>
+module.exports = {
+    entry : "./src/js/app.js",
+    output : {
+        filename : "./build/js/app.js"
+    },
+    watch : true
+};
+                        </code></pre>
                     </section>
                 </section>
 
