@@ -44,15 +44,23 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var yomama = __webpack_require__(1);
-	console.log(yomama("fat"));
+	"use strict";
+
+	var _yomama = __webpack_require__(1);
+
+	console.log((0, _yomama.yomama)("fine"));
 
 /***/ },
 /* 1 */
 /***/ function(module, exports) {
 
-	module.exports = function yomama(desc) {
-		return "Yo' moma is so " + desc;
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var yomama = exports.yomama = function yomama(desc) {
+	  return "Yo's mama's sooooo " + desc;
 	};
 
 /***/ }
