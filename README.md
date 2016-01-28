@@ -1,6 +1,6 @@
 ## AO JS Workshops Team 1
 
-[Team 1 Week 1 notes](https://github.com/MikeDigitize/AO-Js-for-beginners/wiki/Team-1-Week-1)
+[Team 1 Week 1 notes](https://github.com/MikeDigitize/AO-Js-for-beginners/wiki/Team-1-Week-1)   
 [Team 1 Week 2 notes](https://github.com/MikeDigitize/AO-Js-Workshops/wiki/Team-1-Week-2)
 
 ## AO JS Workshops Team 2
