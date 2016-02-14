@@ -161,15 +161,14 @@ var React = require("react");
                         <p class="fragment">You <span class="ao-highlight-blue">need</span> to have</p>
                         <ul>
                             <li class="fragment"><span class="ao-highlight-blue">NodeJS</span> installed</li>
-                            <li class="fragment">And Webpack installed <span class="ao-highlight-blue">globally</span></li>
+                            <li class="fragment">And Webpack installed <span class="ao-highlight-blue">locally</span> in your project directory</li>
                         </ul>
-                        <code style="display: block" class="fragment">npm install webpack -g</code>
+                        <code style="display: block" class="fragment">npm install webpack --save-dev</code>
                         <p class="fragment">That's <span class="ao-highlight-blue">it</span>!</p>
                     </section>
                     <section>
                         <h2>The <span class="ao-highlight-blue">Webpack</span> config</h2>
                         <p class="fragment">In your root create a file called <span class="ao-highlight-blue">webpack.config.js</span></p>
-                        <p class="fragment">It's just an object that uses Node's <span class="ao-highlight-blue">module.exports</span> syntax</p>
                         <pre class="fragment"><code class="hljs" data-trim contenteditable>
 module.exports = {
     entry : "./path/to/your/entry/file",
@@ -179,9 +178,10 @@ module.exports = {
     watch : true // watch for changes
 };
                         </code></pre>
+                        <p class="fragment">It's just an object that uses Node's <span class="ao-highlight-blue">module.exports</span> syntax</p>
                     </section>
                     <section>
-                        <h2>Example <span class="ao-highlight-blue">dependency</span> file</h2>
+                        <h2>Example <span class="ao-highlight-blue">module</span> (ES5 / Node)</h2>
 <pre class="fragment"><code class="hljs" data-trim contenteditable>
 module.exports = function(desc) {
     return "Yo' moma's soooo " + desc;
@@ -200,7 +200,7 @@ console.log(yomama("fat"));
                         <code class="fragment">Yo' moma's soooo fat</code>
                     </section>
                     <section>
-                        <h2><span class="ao-highlight-blue">Winning</span>!</h2>
+                        <h2>It's as <span class="ao-highlight-blue">easy</span> as that!</h2>
                         <img src="images/winning.gif" alt="" class="full-size-image">
                     </section>
                     <section>
@@ -223,7 +223,7 @@ module: {
 </code></pre>
                     </section>
                     <section>
-                        <h2>Example <span class="ao-highlight-blue">dependency</span> file</h2>
+                        <h2>Example ES6 <span class="ao-highlight-blue">export</span></h2>
 <pre class="fragment"><code class="hljs" data-trim contenteditable>
 export let yomama = (desc) => `Yo' mama's sooooo ${desc}`;
 </code></pre>
@@ -238,11 +238,24 @@ console.log(yomama("fine"));
                         <img src="images/pull.gif" alt="" class="full-size-image fragment">
                     </section>
                     <section>
+                        <h2>Webpack Dev <span class="ao-highlight-blue">Server</span></h2>
+                        <p class="fragment">To use WebPack's dev server and get <span class="ao-highlight-blue">automatic</span> browser refreshes after each save just install it <span class="ao-highlight-blue">globally</span></p>
+                        <code class="fragment">npm install webpack-dev-server -g</code>
+                        <p class="fragment">And run it from the <span class="ao-highlight-blue">command</span> line like so</p>
+                        <code class="fragment">webpack-dev-server</code>
+                        <p class="fragment">Then go to <span class="ao-highlight-blue">http://localhost:8080/webpack-dev-server/your-html-file</span></p>
+                        <p class="fragment"><span class="ao-highlight-blue">Easy</span>!</p>
+                    </section>
+                    <section>
                         <h2>So that's a quick taste of <span class="ao-highlight-blue">WebPack</span></h2>
                         <p class="fragment">There's a ton of awesome <span class="ao-highlight-blue">loaders</span> to play with</p>
                         <p class="fragment">So go <span class="ao-highlight-blue">experiment</span> and see what it can do</p>
                         <p class="fragment">It's pretty <span class="ao-highlight-blue">sweet</span></p>
                         <img src="images/this.gif" style="width:500px; margin: auto" alt="" class="full-size-image fragment">
+                    </section>
+                    <section>
+                        <p>You can play with the <span class="ao-highlight-blue">examples</span> used in this talk here at my AO Js Workshop repo</p>
+                        <p><a href="https://github.com/MikeDigitize/AO-Js-Workshops/tree/master/webpack">https://github.com/MikeDigitize/AO-Js-Workshops/tree/master/webpack</a></p>
                     </section>
                 </section>
 

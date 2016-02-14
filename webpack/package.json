@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/MikeDigitize/AO-Js-Workshops/issues"
   },
-  "homepage": "https://github.com/MikeDigitize/AO-Js-Workshops#readme"
+  "homepage": "https://github.com/MikeDigitize/AO-Js-Workshops#readme",
+  "devDependencies": {
+    "babel-core": "^6.4.5",
+    "babel-loader": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "webpack": "^1.12.12"
+  }
 }

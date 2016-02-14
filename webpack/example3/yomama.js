@@ -1,0 +1,1 @@
+export let yomama = (desc) => `Yo's mama's sooooo ${desc}`;
