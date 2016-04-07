@@ -11,5 +11,5 @@
 [Team 2 Week 2 notes](https://github.com/MikeDigitize/AO-Js-Workshops/wiki/Team-2-Week-2)    
 [Team 2 Week 3 notes](https://github.com/MikeDigitize/AO-Js-Workshops/wiki/Team-2-Week-3)    
 [Team 2 Week 4 notes](https://github.com/MikeDigitize/AO-Js-Workshops/wiki/Team-2-Week-4)   
-[Team 2 Week 5 notes](https://github.com/MikeDigitize/AO-Js-Workshops/wiki/Team-2-Week-5)
+[Team 2 Week 5 notes](https://github.com/MikeDigitize/AO-Js-Workshops/wiki/Team-2-Week-5)    
 [Team 2 Week 6 notes](https://github.com/MikeDigitize/AO-Js-Workshops/wiki/Team-2-Week-6)
