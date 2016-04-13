@@ -1,14 +1,37 @@
 export function Game() {
-	var target = document.querySelector(".target");
-	var container = document.querySelector("#game-area");
-	var targetSpeed = 1000;
+	let target = document.querySelector(".target");
+	let container = document.querySelector("#game-area");
+	let targetSpeed = 2000;
 	start(target, container, targetSpeed);
 }
 
+function onTargetClick(score, container) {
+	let getScore = getGameScore(score);
+	let setScore = setGameScore(score);
+	return function(evt) {
+		repositionTarget(this, container);
+		let points = getClickScore(evt);
+		let currentScore = getScore();
+		setScore(currentScore, points);
+	}
+}
+
+function setGameScore(score) {
+	return function(prev, points) {
+		score.innerText = prev + points;
+	}
+}
+
+function getGameScore(score) {
+	return function() {
+		return Number(score.innerText);
+	}
+}
+
 function startGameTimer(timeDisplay) {
-	var setTimer = setGameTime(timeDisplay);
-	var count = 10;
-	var timer = setInterval(function() {
+	let setTimer = setGameTime(timeDisplay);
+	let count = 10;
+	let timer = setInterval(function() {
 		if(count === 0) {
 			clearInterval(timer);
 			setTimer(count);
@@ -48,21 +71,29 @@ function getRandomNumber(min, max) {
 
 function start(target, container, targetSpeed) {
 	let timeDisplay = document.querySelector("#timer");
+	let score = document.querySelector("#score");
 	let getTimerCount = getGameTime(timeDisplay);
-	let randomXYGenerator = getRandomXYWithinContainer(container, target);
+	let handler = onTargetClick(score, container);
+	target.addEventListener("click", handler, false);
 	startGameTimer(timeDisplay);
 	let timer = setInterval(function() {
-		let random = randomXYGenerator();
 		if(getTimerCount() === 0) {
 			clearInterval(timer);
-			alert("Game over!");
+			target.removeEventListener("click", handler, false);
+			alert(`Game over! You scored ${getGameScore(score)()} points!`);
 		}
 		else {
-			hideTarget(target);
-			positionTarget(target, random.x, random.y);
-			showTarget(target);
+			repositionTarget(target, container);
 		}
 	}, targetSpeed);
+}
+
+function repositionTarget(target, container) {
+	let randomXYGenerator = getRandomXYWithinContainer(container, target);
+	let random = randomXYGenerator();
+	hideTarget(target);
+	positionTarget(target, random.x, random.y);
+	showTarget(target);
 }
 
 function hideTarget(target) {
@@ -76,4 +107,10 @@ function showTarget(target) {
 function positionTarget(target, left, top) {
 	target.style.top = `${top}px`;
 	target.style.left = `${left}px`;
+}
+
+
+function getClickScore(evt) {
+	let target = evt.target;
+	return target.classList.contains("bullseye") ? 3 : target.classList.contains("inner") ? 2 : 1;
 }

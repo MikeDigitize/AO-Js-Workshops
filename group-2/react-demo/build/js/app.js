@@ -20061,8 +20061,31 @@
 	function Game() {
 		var target = document.querySelector(".target");
 		var container = document.querySelector("#game-area");
-		var targetSpeed = 1000;
+		var targetSpeed = 2000;
 		start(target, container, targetSpeed);
+	}
+
+	function onTargetClick(score, container) {
+		var getScore = getGameScore(score);
+		var setScore = setGameScore(score);
+		return function (evt) {
+			repositionTarget(this, container);
+			var points = getClickScore(evt);
+			var currentScore = getScore();
+			setScore(currentScore, points);
+		};
+	}
+
+	function setGameScore(score) {
+		return function (prev, points) {
+			score.innerText = prev + points;
+		};
+	}
+
+	function getGameScore(score) {
+		return function () {
+			return Number(score.innerText);
+		};
 	}
 
 	function startGameTimer(timeDisplay) {
@@ -20107,20 +20130,28 @@
 
 	function start(target, container, targetSpeed) {
 		var timeDisplay = document.querySelector("#timer");
+		var score = document.querySelector("#score");
 		var getTimerCount = getGameTime(timeDisplay);
-		var randomXYGenerator = getRandomXYWithinContainer(container, target);
+		var handler = onTargetClick(score, container);
+		target.addEventListener("click", handler, false);
 		startGameTimer(timeDisplay);
 		var timer = setInterval(function () {
-			var random = randomXYGenerator();
 			if (getTimerCount() === 0) {
 				clearInterval(timer);
-				alert("Game over!");
+				target.removeEventListener("click", handler, false);
+				alert("Game over! You scored " + getGameScore(score)() + " points!");
 			} else {
-				hideTarget(target);
-				positionTarget(target, random.x, random.y);
-				showTarget(target);
+				repositionTarget(target, container);
 			}
 		}, targetSpeed);
+	}
+
+	function repositionTarget(target, container) {
+		var randomXYGenerator = getRandomXYWithinContainer(container, target);
+		var random = randomXYGenerator();
+		hideTarget(target);
+		positionTarget(target, random.x, random.y);
+		showTarget(target);
 	}
 
 	function hideTarget(target) {
@@ -20134,6 +20165,11 @@
 	function positionTarget(target, left, top) {
 		target.style.top = top + "px";
 		target.style.left = left + "px";
+	}
+
+	function getClickScore(evt) {
+		var target = evt.target;
+		return target.classList.contains("bullseye") ? 3 : target.classList.contains("inner") ? 2 : 1;
 	}
 
 /***/ }
