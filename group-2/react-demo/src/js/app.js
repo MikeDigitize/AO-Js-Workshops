@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 class Test extends Component {
 	render() {
-		return (<h1>hi!!!</h1>);
+		return (<h1>Welcome to Target Practice!</h1>);
 	}
 }
 

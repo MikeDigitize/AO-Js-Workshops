@@ -79,7 +79,7 @@
 				return _react2.default.createElement(
 					"h1",
 					null,
-					"hi!!!"
+					"Welcome to Target Practice!"
 				);
 			}
 		}]);
