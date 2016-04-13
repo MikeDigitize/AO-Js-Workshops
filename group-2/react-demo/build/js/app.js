@@ -56,8 +56,6 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _game = __webpack_require__(166);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -90,8 +88,6 @@
 	}(_react.Component);
 
 	_reactDom2.default.render(_react2.default.createElement(Test, null), document.getElementById("test"));
-
-	(0, _game.Game)();
 
 /***/ },
 /* 1 */
@@ -20047,130 +20043,6 @@
 	var ReactMount = __webpack_require__(156);
 
 	module.exports = ReactMount.renderSubtreeIntoContainer;
-
-/***/ },
-/* 166 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.Game = Game;
-	function Game() {
-		var target = document.querySelector(".target");
-		var container = document.querySelector("#game-area");
-		var targetSpeed = 2000;
-		start(target, container, targetSpeed);
-	}
-
-	function onTargetClick(score, container) {
-		var getScore = getGameScore(score);
-		var setScore = setGameScore(score);
-		return function (evt) {
-			repositionTarget(this, container);
-			var points = getClickScore(evt);
-			var currentScore = getScore();
-			setScore(currentScore, points);
-		};
-	}
-
-	function setGameScore(score) {
-		return function (prev, points) {
-			score.innerText = prev + points;
-		};
-	}
-
-	function getGameScore(score) {
-		return function () {
-			return Number(score.innerText);
-		};
-	}
-
-	function startGameTimer(timeDisplay) {
-		var setTimer = setGameTime(timeDisplay);
-		var count = 10;
-		var timer = setInterval(function () {
-			if (count === 0) {
-				clearInterval(timer);
-				setTimer(count);
-			} else {
-				count--;
-				setTimer(count);
-			}
-		}, 1000);
-	}
-
-	function getGameTime(timer) {
-		return function () {
-			return Number(timer.innerText);
-		};
-	}
-
-	function setGameTime(timer) {
-		return function (text) {
-			timer.innerText = text;
-		};
-	}
-
-	function getRandomXYWithinContainer(container, target) {
-		var width = container.offsetWidth;
-		var height = container.offsetHeight;
-		return function () {
-			var x = getRandomNumber(0, width - target.offsetWidth / 2);
-			var y = getRandomNumber(0, height - target.offsetHeight / 2);
-			return { x: x, y: y };
-		};
-	}
-
-	function getRandomNumber(min, max) {
-		return Math.floor(Math.random() * (max - min)) + min;
-	}
-
-	function start(target, container, targetSpeed) {
-		var timeDisplay = document.querySelector("#timer");
-		var score = document.querySelector("#score");
-		var getTimerCount = getGameTime(timeDisplay);
-		var handler = onTargetClick(score, container);
-		target.addEventListener("click", handler, false);
-		startGameTimer(timeDisplay);
-		var timer = setInterval(function () {
-			if (getTimerCount() === 0) {
-				clearInterval(timer);
-				target.removeEventListener("click", handler, false);
-				alert("Game over! You scored " + getGameScore(score)() + " points!");
-			} else {
-				repositionTarget(target, container);
-			}
-		}, targetSpeed);
-	}
-
-	function repositionTarget(target, container) {
-		var randomXYGenerator = getRandomXYWithinContainer(container, target);
-		var random = randomXYGenerator();
-		hideTarget(target);
-		positionTarget(target, random.x, random.y);
-		showTarget(target);
-	}
-
-	function hideTarget(target) {
-		target.style.display = "none";
-	}
-
-	function showTarget(target) {
-		target.style.display = "block";
-	}
-
-	function positionTarget(target, left, top) {
-		target.style.top = top + "px";
-		target.style.left = left + "px";
-	}
-
-	function getClickScore(evt) {
-		var target = evt.target;
-		return target.classList.contains("bullseye") ? 3 : target.classList.contains("inner") ? 2 : 1;
-	}
 
 /***/ }
 /******/ ]);

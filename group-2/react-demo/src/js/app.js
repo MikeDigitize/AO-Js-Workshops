@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import { Game } from "./game";
 
 class Test extends Component {
 	render() {
@@ -9,5 +8,3 @@ class Test extends Component {
 }
 
 ReactDOM.render(<Test />, document.getElementById("test"));
-
-Game();
