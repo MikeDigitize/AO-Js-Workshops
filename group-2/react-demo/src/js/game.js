@@ -73,7 +73,7 @@ function start(target, container, targetSpeed) {
 	let timeDisplay = document.querySelector("#timer");
 	let score = document.querySelector("#score");
 	let getTimerCount = getGameTime(timeDisplay);
-	let handler = onTargetClick(score, container);
+	let handler = onTargetClick(score, timeDisplay, container);
 	target.addEventListener("click", handler, false);
 	startGameTimer(timeDisplay);
 	let timer = setInterval(function() {
