@@ -20061,7 +20061,34 @@
 	function Game() {
 		var target = document.querySelector(".target");
 		var container = document.querySelector("#game-area");
-		start(target, container);
+		var targetSpeed = 1000;
+		start(target, container, targetSpeed);
+	}
+
+	function startGameTimer(timeDisplay) {
+		var setTimer = setGameTime(timeDisplay);
+		var count = 10;
+		var timer = setInterval(function () {
+			if (count === 0) {
+				clearInterval(timer);
+				setTimer(count);
+			} else {
+				count--;
+				setTimer(count);
+			}
+		}, 1000);
+	}
+
+	function getGameTime(timer) {
+		return function () {
+			return Number(timer.innerText);
+		};
+	}
+
+	function setGameTime(timer) {
+		return function (text) {
+			timer.innerText = text;
+		};
 	}
 
 	function getRandomXYWithinContainer(container, target) {
@@ -20078,20 +20105,22 @@
 		return Math.floor(Math.random() * (max - min)) + min;
 	}
 
-	function start(target, container) {
-		var count = 0;
+	function start(target, container, targetSpeed) {
+		var timeDisplay = document.querySelector("#timer");
+		var getTimerCount = getGameTime(timeDisplay);
 		var randomXYGenerator = getRandomXYWithinContainer(container, target);
+		startGameTimer(timeDisplay);
 		var timer = setInterval(function () {
 			var random = randomXYGenerator();
-			if (count === 10) {
+			if (getTimerCount() === 0) {
 				clearInterval(timer);
+				alert("Game over!");
 			} else {
-				count++;
 				hideTarget(target);
 				positionTarget(target, random.x, random.y);
 				showTarget(target);
 			}
-		}, 1000);
+		}, targetSpeed);
 	}
 
 	function hideTarget(target) {
