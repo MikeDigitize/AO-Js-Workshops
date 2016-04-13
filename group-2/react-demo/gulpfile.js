@@ -4,7 +4,8 @@ var minimise = require("gulp-cssnano");
 var autoprefixer = require("gulp-autoprefixer");
 var concat = require("gulp-concat");
 var webpack = require("webpack-stream");
-var sassSource = "./src/scss/bootstrap4/bootstrap-custom.scss";
+var bs4Source = "./src/scss/bootstrap4/bootstrap-custom.scss";
+var sassSource = "./src/scss/game.scss";
 var stylesDest = "./build/css";
 
 var jsSource = "./src/js/app.js";
@@ -20,7 +21,7 @@ gulp.task("js", () => {
 });
 
 gulp.task("styles", () => {
-    return gulp.src(sassSource)
+    return gulp.src([bs4Source, sassSource])
         .pipe(sass())
         .pipe(autoprefixer())
         .pipe(minimise())

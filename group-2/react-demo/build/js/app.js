@@ -56,6 +56,8 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
+	var _game = __webpack_require__(166);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -88,6 +90,8 @@
 	}(_react.Component);
 
 	_reactDom2.default.render(_react2.default.createElement(Test, null), document.getElementById("test"));
+
+	(0, _game.Game)();
 
 /***/ },
 /* 1 */
@@ -20043,6 +20047,65 @@
 	var ReactMount = __webpack_require__(156);
 
 	module.exports = ReactMount.renderSubtreeIntoContainer;
+
+/***/ },
+/* 166 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.Game = Game;
+	function Game() {
+		var target = document.querySelector(".target");
+		var container = document.querySelector("#game-area");
+		start(target, container);
+	}
+
+	function getRandomXYWithinContainer(container, target) {
+		var width = container.offsetWidth;
+		var height = container.offsetHeight;
+		return function () {
+			var x = getRandomNumber(0, width - target.offsetWidth / 2);
+			var y = getRandomNumber(0, height - target.offsetHeight / 2);
+			return { x: x, y: y };
+		};
+	}
+
+	function getRandomNumber(min, max) {
+		return Math.floor(Math.random() * (max - min)) + min;
+	}
+
+	function start(target, container) {
+		var count = 0;
+		var randomXYGenerator = getRandomXYWithinContainer(container, target);
+		var timer = setInterval(function () {
+			var random = randomXYGenerator();
+			if (count === 10) {
+				clearInterval(timer);
+			} else {
+				count++;
+				hideTarget(target);
+				positionTarget(target, random.x, random.y);
+				showTarget(target);
+			}
+		}, 1000);
+	}
+
+	function hideTarget(target) {
+		target.style.display = "none";
+	}
+
+	function showTarget(target) {
+		target.style.display = "block";
+	}
+
+	function positionTarget(target, left, top) {
+		target.style.top = top + "px";
+		target.style.left = left + "px";
+	}
 
 /***/ }
 /******/ ]);
