@@ -1,0 +1,39 @@
+{
+  "name": "react-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parallelshell \"node index.js\" \"gulp\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikeDigitize/AO-Js-Workshops.git"
+  },
+  "author": "Mike Chadwick",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MikeDigitize/AO-Js-Workshops/issues"
+  },
+  "homepage": "https://github.com/MikeDigitize/AO-Js-Workshops#readme",
+  "devDependencies": {
+    "babel-core": "^6.7.6",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.1",
+    "gulp-sass": "^2.2.0",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1",
+    "webpack-stream": "^3.1.0"
+  },
+  "dependencies": {
+    "express": "^4.13.4",
+    "parallelshell": "^2.0.0",
+    "socket.io": "^1.4.5"
+  }
+}
