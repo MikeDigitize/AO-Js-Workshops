@@ -1,18 +1,35 @@
 export function Game() {
 	let target = document.querySelector(".target");
 	let container = document.querySelector("#game-area");
-	let targetSpeed = 2000;
-	start(target, container, targetSpeed);
+	let timeDisplay = document.querySelector("#timer");
+	let targetSpeed = 1000;
+	window.startGame = start(target, container, targetSpeed);
+	startGameTimer(timeDisplay);
+	window.startGame();	
+}
+
+function targetTimer(time) {	
+	return new Promise(function(resolve) {
+		let timer = setTimeout(function() {
+			window.cancelTargetTimer = null;
+			resolve(true)
+		}, time);
+		window.cancelTargetTimer = function() {
+			clearTimeout(timer);
+			resolve(false);	
+		} 
+	});	
 }
 
 function onTargetClick(score, container) {
 	let getScore = getGameScore(score);
 	let setScore = setGameScore(score);
 	return function(evt) {
-		repositionTarget(this, container);
+		window.cancelTargetTimer();
 		let points = getClickScore(evt);
 		let currentScore = getScore();
 		setScore(currentScore, points);
+		window.startGame();
 	}
 }
 
@@ -70,22 +87,28 @@ function getRandomNumber(min, max) {
 }
 
 function start(target, container, targetSpeed) {
+
 	let timeDisplay = document.querySelector("#timer");
 	let score = document.querySelector("#score");
-	let getTimerCount = getGameTime(timeDisplay);
-	let handler = onTargetClick(score, timeDisplay, container);
+	let handler = onTargetClick(score, timeDisplay, container);	
 	target.addEventListener("click", handler, false);
-	startGameTimer(timeDisplay);
-	let timer = setInterval(function() {
+
+	return function restart() {
+		let getTimerCount = getGameTime(timeDisplay);
 		if(getTimerCount() === 0) {
-			clearInterval(timer);
 			target.removeEventListener("click", handler, false);
 			alert(`Game over! You scored ${getGameScore(score)()} points!`);
 		}
 		else {
 			repositionTarget(target, container);
+			targetTimer(targetSpeed).then(function(allow) {
+				if(allow) {
+					restart();	
+				}				
+			});
 		}
-	}, targetSpeed);
+	}
+
 }
 
 function repositionTarget(target, container) {
