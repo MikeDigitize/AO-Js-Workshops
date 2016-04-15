@@ -1,10 +1,16 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import BigText from "./big-text";
 
 class Test extends Component {
 	render() {
-		return (<h1>Welcome to React!</h1>);
+		return (
+			<div>
+				<BigText />
+			</div>
+		);
 	}
 }
+
 
 ReactDOM.render(<Test />, document.getElementById("test"));
