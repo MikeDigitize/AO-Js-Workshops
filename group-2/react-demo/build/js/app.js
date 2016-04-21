@@ -60,8 +60,6 @@
 
 	var _bigText2 = _interopRequireDefault(_bigText);
 
-	var _game = __webpack_require__(167);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -69,8 +67,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	(0, _game.Game)();
 
 	var Test = function (_Component) {
 		_inherits(Test, _Component);
@@ -84,11 +80,7 @@
 		_createClass(Test, [{
 			key: "render",
 			value: function render() {
-				return _react2.default.createElement(
-					"div",
-					null,
-					_react2.default.createElement(_bigText2.default, null)
-				);
+				return _react2.default.createElement(_bigText2.default, null);
 			}
 		}]);
 
@@ -20083,7 +20075,7 @@
 	var BigText = function (_Component) {
 		_inherits(BigText, _Component);
 
-		function BigText() {
+		function BigText(props) {
 			_classCallCheck(this, BigText);
 
 			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(BigText).call(this));
@@ -20118,152 +20110,6 @@
 	}(_react.Component);
 
 	exports.default = BigText;
-
-/***/ },
-/* 167 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.Game = Game;
-	function Game() {
-		var target = document.querySelector(".target");
-		var container = document.querySelector("#game-area");
-		var timeDisplay = document.querySelector("#timer");
-		var targetSpeed = 1000;
-		window.startGame = start(target, container, targetSpeed);
-		startGameTimer(timeDisplay);
-		window.startGame();
-	}
-
-	function targetTimer(time) {
-		return new Promise(function (resolve) {
-			var timer = setTimeout(function () {
-				window.cancelTargetTimer = null;
-				resolve(true);
-			}, time);
-			window.cancelTargetTimer = function () {
-				clearTimeout(timer);
-				resolve(false);
-			};
-		});
-	}
-
-	function onTargetClick(score, container) {
-		var getScore = getGameScore(score);
-		var setScore = setGameScore(score);
-		return function (evt) {
-			window.cancelTargetTimer();
-			var points = getClickScore(evt);
-			var currentScore = getScore();
-			setScore(currentScore, points);
-			window.startGame();
-		};
-	}
-
-	function setGameScore(score) {
-		return function (prev, points) {
-			score.innerText = prev + points;
-		};
-	}
-
-	function getGameScore(score) {
-		return function () {
-			return Number(score.innerText);
-		};
-	}
-
-	function startGameTimer(timeDisplay) {
-		var setTimer = setGameTime(timeDisplay);
-		var count = 10;
-		var timer = setInterval(function () {
-			if (count === 0) {
-				clearInterval(timer);
-				setTimer(count);
-			} else {
-				count--;
-				setTimer(count);
-			}
-		}, 1000);
-	}
-
-	function getGameTime(timer) {
-		return function () {
-			return Number(timer.innerText);
-		};
-	}
-
-	function setGameTime(timer) {
-		return function (text) {
-			timer.innerText = text;
-		};
-	}
-
-	function getRandomXYWithinContainer(container, target) {
-		var width = container.offsetWidth;
-		var height = container.offsetHeight;
-		return function () {
-			var x = getRandomNumber(0, width - target.offsetWidth / 2);
-			var y = getRandomNumber(0, height - target.offsetHeight / 2);
-			return { x: x, y: y };
-		};
-	}
-
-	function getRandomNumber(min, max) {
-		return Math.floor(Math.random() * (max - min)) + min;
-	}
-
-	function start(target, container, targetSpeed) {
-
-		var timeDisplay = document.querySelector("#timer");
-		var score = document.querySelector("#score");
-		var handler = onTargetClick(score, timeDisplay, container);
-		target.addEventListener("click", handler, false);
-
-		return function restart() {
-			var getTimerCount = getGameTime(timeDisplay);
-			if (getTimerCount() === 0) {
-				target.removeEventListener("click", handler, false);
-				alert("Game over! You scored " + getGameScore(score)() + " points!");
-			} else {
-				repositionTarget(target, container);
-				targetTimer(targetSpeed).then(function (allow) {
-					if (allow) {
-						restart();
-					}
-				});
-			}
-		};
-	}
-
-	function repositionTarget(target, container) {
-		var randomXYGenerator = getRandomXYWithinContainer(container, target);
-		var random = randomXYGenerator();
-		hideTarget(target);
-		positionTarget(target, random.x, random.y);
-		showTarget(target);
-	}
-
-	function hideTarget(target) {
-		target.style.display = "none";
-	}
-
-	function showTarget(target) {
-		target.style.display = "block";
-	}
-
-	function positionTarget(target, left, top) {
-		target.style.top = top + "px";
-		target.style.left = left + "px";
-	}
-
-	function getClickScore(evt) {
-		var target = evt.target;
-		return target.classList.contains("bullseye") ? 3 : target.classList.contains("inner") ? 2 : 1;
-	}
 
 /***/ }
 /******/ ]);

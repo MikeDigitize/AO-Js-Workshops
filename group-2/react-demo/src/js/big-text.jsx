@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
 export default class BigText extends Component {
-	constructor() {
+	constructor(props) {
 		super();
 		this.state = {
 			text : "Hello World!"
