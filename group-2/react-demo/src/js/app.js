@@ -1,15 +1,40 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import BigText from "./big-text";
+import { render } from "react-dom";
+import BigButton from "./components/button";
+import { Counter } from "./components/counter";
 
-class Test extends Component {
+//NOTE: get the store
+import { CountStore } from './store/counterstore'
+
+class App extends Component {
+
+	constructor() {
+		super();
+		this.state = {
+			count : 1
+		};
+	}
+
+	onIncrement() {
+		this.setState({
+			count : ++this.state.count
+		});
+	}
+
+	onComponentDidMount(){
+		
+	}
 
 	render() {
 		return (
-			<BigText/>
+			<div>
+				<BigButton increment= { this.onIncrement.bind(this) }/>
+				<Counter count={ this.state.count } />
+			</div>
+			
 		);
 	}
 }
 
-
-ReactDOM.render(<Test />, document.getElementById("test"));
+render(<App />, document.getElementById("app1"));
+render(<App />, document.getElementById("app2"));

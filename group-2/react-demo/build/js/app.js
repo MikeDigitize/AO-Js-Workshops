@@ -54,11 +54,11 @@
 
 	var _reactDom = __webpack_require__(32);
 
-	var _reactDom2 = _interopRequireDefault(_reactDom);
+	var _button = __webpack_require__(166);
 
-	var _bigText = __webpack_require__(166);
+	var _button2 = _interopRequireDefault(_button);
 
-	var _bigText2 = _interopRequireDefault(_bigText);
+	var _counter = __webpack_require__(167);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -68,26 +68,44 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Test = function (_Component) {
-		_inherits(Test, _Component);
+	var App = function (_Component) {
+		_inherits(App, _Component);
 
-		function Test() {
-			_classCallCheck(this, Test);
+		function App() {
+			_classCallCheck(this, App);
 
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(Test).apply(this, arguments));
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this));
+
+			_this.state = {
+				count: 1
+			};
+			return _this;
 		}
 
-		_createClass(Test, [{
+		_createClass(App, [{
+			key: "onIncrement",
+			value: function onIncrement() {
+				this.setState({
+					count: ++this.state.count
+				});
+			}
+		}, {
 			key: "render",
 			value: function render() {
-				return _react2.default.createElement(_bigText2.default, null);
+				return _react2.default.createElement(
+					"div",
+					null,
+					_react2.default.createElement(_button2.default, { increment: this.onIncrement.bind(this) }),
+					_react2.default.createElement(_counter.Counter, { count: this.state.count })
+				);
 			}
 		}]);
 
-		return Test;
+		return App;
 	}(_react.Component);
 
-	_reactDom2.default.render(_react2.default.createElement(Test, null), document.getElementById("test"));
+	(0, _reactDom.render)(_react2.default.createElement(App, null), document.getElementById("app1"));
+	(0, _reactDom.render)(_react2.default.createElement(App, null), document.getElementById("app2"));
 
 /***/ },
 /* 1 */
@@ -20060,10 +20078,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(32);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -20072,44 +20086,69 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var BigText = function (_Component) {
-		_inherits(BigText, _Component);
+	var BigButton = function (_Component) {
+		_inherits(BigButton, _Component);
 
-		function BigText(props) {
-			_classCallCheck(this, BigText);
+		function BigButton(props) {
+			_classCallCheck(this, BigButton);
 
-			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(BigText).call(this));
-
-			_this.state = {
-				text: "Hello World!"
-			};
-			return _this;
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(BigButton).call(this));
 		}
 
-		_createClass(BigText, [{
+		_createClass(BigButton, [{
+			key: "styles",
+			value: function styles() {
+				return {
+					width: "200px",
+					height: "80px",
+					fontSize: "30px",
+					marginTop: "10px"
+				};
+			}
+		}, {
 			key: "render",
 			value: function render() {
 				return _react2.default.createElement(
-					"div",
-					null,
-					_react2.default.createElement(
-						"p",
-						null,
-						"This is some Big Text!"
-					),
-					_react2.default.createElement(
-						"p",
-						null,
-						this.state.text
-					)
+					"button",
+					{
+						onClick: this.props.increment,
+						style: this.styles(),
+						className: "btn btn-success" },
+					"Click me"
 				);
 			}
 		}]);
 
-		return BigText;
+		return BigButton;
 	}(_react.Component);
 
-	exports.default = BigText;
+	exports.default = BigButton;
+
+/***/ },
+/* 167 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.Counter = undefined;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Counter = exports.Counter = function Counter(props) {
+		return _react2.default.createElement(
+			"div",
+			{ style: { fontSize: "30px", textAlign: "center" } },
+			"Count: ",
+			props.count
+		);
+	};
 
 /***/ }
 /******/ ]);
